@@ -4,7 +4,7 @@
 public class Fireball : MonoBehaviour {
 
     public float Speed;
-    public float Damage;
+    public int Damage;
 
     private Rigidbody myBody;
 
@@ -30,12 +30,14 @@ public class Fireball : MonoBehaviour {
 
     void OnCollisionEnter(Collision collision)
     {
+        Debug.Log("Projectile hit: " + collision.gameObject.name);
         if (collision.gameObject.tag == "Player")
         {
             Health target = collision.gameObject.GetComponent<Health>();
             if (target != null)
             {
-                target.Value =- Damage;
+                target.Value -= Damage;
+                target.DisplayDamageFx();
             }
         }
         Destroy(gameObject);

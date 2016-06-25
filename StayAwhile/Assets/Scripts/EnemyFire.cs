@@ -15,11 +15,6 @@ public class EnemyFire : MonoBehaviour {
     {
         player = GameObject.FindGameObjectWithTag("Player");
     }
-
-	// Use this for initialization
-	void Start () {
-	
-	}
 	
 	// Update is called once per frame
 	void Update () {
