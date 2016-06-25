@@ -68,8 +68,10 @@
     <Compile Include="Assets\Scripts\EnemyFire.cs" />
     <Compile Include="Assets\Scripts\FireGun.cs" />
     <Compile Include="Assets\Scripts\Fireball.cs" />
+    <Compile Include="Assets\Scripts\HUD.cs" />
     <Compile Include="Assets\Scripts\Health.cs" />
     <Compile Include="Assets\Scripts\MouseLook.cs" />
+    <Compile Include="Assets\Scripts\PlayerHUDSetup.cs" />
     <Compile Include="Assets\Scripts\PlayerMove.cs" />
     <Compile Include="Assets\Scripts\RailShot.cs" />
     <Compile Include="Assets\Scripts\Systems\Modules\ModuleSystem.cs" />

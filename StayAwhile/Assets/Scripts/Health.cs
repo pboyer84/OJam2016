@@ -9,17 +9,19 @@ public class Health : MonoBehaviour {
     public Image DamageSplash;
     public float DamageSplashDuration = 0.1f;
     private float timer;
-	// Update is called once per frame
+    
+    void Start()
+    {
+        ConfigureHUDForPlayer();
+    }
+
+    // Update is called once per frame
 	void Update () {
 
         if (Display != null)
         {
             Display.text = Value.ToString();
-        }
-
-        
-
-        
+        }  
 	}
 
     public void DisplayDamageFx()
@@ -36,5 +38,21 @@ public class Health : MonoBehaviour {
         yield return new WaitForSeconds(DamageSplashDuration);
         DamageSplash.enabled = false;
         yield return null;   
+    }
+
+    private void ConfigureHUDForPlayer()
+    {
+        if (gameObject.tag == "Player")
+        {
+            GameObject theHUD = GameObject.Find("HUD");
+            if (theHUD == null)
+            {
+                GameObject HUDPrefab = Resources.Load<GameObject>(@"Prefabs/Player/HUD");
+                theHUD = GameObject.Instantiate(HUDPrefab);
+            }
+            HUD foo = theHUD.GetComponent<HUD>();
+            Display = foo.HealthValue;
+            DamageSplash = foo.DamageSplash;
+        }
     }
 }
