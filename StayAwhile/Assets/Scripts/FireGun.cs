@@ -33,6 +33,7 @@ public class FireGun : MonoBehaviour {
 
     void FixedUpdate()
     {
+        Debug.DrawRay(GunPoint.position, GunPoint.forward, Color.cyan);
         if (isGunFiring)
         {
             Debug.Log("Fire!");
@@ -53,10 +54,8 @@ public class FireGun : MonoBehaviour {
                         Vector3 shotEnd = GunPoint.position + (GunPoint.forward * FireDistance);
                         s.Init(shotStart, shotEnd);
                         Player.Play();
-                        Destroy(hitInfo.collider.gameObject);
                     }
                 }
-
             }
             else
             {
