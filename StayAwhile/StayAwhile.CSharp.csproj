@@ -65,10 +65,20 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\AudioProcessor.cs" />
     <Compile Include="Assets\Scripts\DebugBeatDetect.cs" />
+    <Compile Include="Assets\Scripts\EnemyFire.cs" />
     <Compile Include="Assets\Scripts\FireGun.cs" />
+    <Compile Include="Assets\Scripts\Fireball.cs" />
+    <Compile Include="Assets\Scripts\Health.cs" />
     <Compile Include="Assets\Scripts\MouseLook.cs" />
     <Compile Include="Assets\Scripts\PlayerMove.cs" />
     <Compile Include="Assets\Scripts\RailShot.cs" />
+    <Compile Include="Assets\Scripts\Systems\Modules\ModuleSystem.cs" />
+    <Compile Include="Assets\Scripts\Systems\Tiles\Tile.cs" />
+    <Compile Include="Assets\Scripts\Systems\Tiles\TileRoot.cs" />
+    <Compile Include="Assets\Scripts\Systems\Tiles\TileType.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Resources\Shaders\Colour.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

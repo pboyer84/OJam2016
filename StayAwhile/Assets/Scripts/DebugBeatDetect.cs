@@ -21,7 +21,10 @@ public class DebugBeatDetect : MonoBehaviour, AudioProcessor.AudioCallbacks
         Debug.Log("Beat " + beatCounter);
         foreach (MeshRenderer r in Feedback)
         {
-            r.material = Good;
+            if (r != null)
+            {
+                r.material = Good;
+            }
         }
     }
 
@@ -30,8 +33,8 @@ public class DebugBeatDetect : MonoBehaviour, AudioProcessor.AudioCallbacks
         for (int i = 0; i < spectrum.Length; ++i)
         {
             Vector3 start = new Vector3(i, 0, 0);
-            Vector3 end = new Vector3(i, spectrum[i]*10, 0);
-            Debug.DrawLine(start, end, Color.white);
+            Vector3 end = new Vector3(i, spectrum[i]*100, 0);
+            Debug.DrawLine(start, end, Color.red);
         }
     }
 
@@ -41,7 +44,6 @@ public class DebugBeatDetect : MonoBehaviour, AudioProcessor.AudioCallbacks
     {
         AudioProcessor processor = FindObjectOfType<AudioProcessor>();
         processor.addAudioCallback(this);
-
     }
 
     // Update is called once per frame
@@ -50,9 +52,12 @@ public class DebugBeatDetect : MonoBehaviour, AudioProcessor.AudioCallbacks
         beatTimer += Time.deltaTime;
         if (beatTimer > beatTolerance)
         {
-            foreach (MeshRenderer mr in Feedback)
+            foreach (MeshRenderer r in Feedback)
             {
-                mr.material = Neutral;
+                if (r != null)
+                {
+                    r.material = Neutral;
+                }
             }     
         }
     }
