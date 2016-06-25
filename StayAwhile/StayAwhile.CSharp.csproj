@@ -71,6 +71,8 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\AudioProcessor.cs" />
     <Compile Include="Assets\Scripts\DebugBeatDetect.cs" />
+    <Compile Include="Assets\Scripts\FireGun.cs" />
+    <Compile Include="Assets\Scripts\RailShot.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

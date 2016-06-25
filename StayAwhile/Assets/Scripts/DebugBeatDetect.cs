@@ -4,22 +4,22 @@ public class DebugBeatDetect : MonoBehaviour, AudioProcessor.AudioCallbacks
 {
     private int beatCounter = 0;
     private float beatTimer;
-    private float beatTolerance = 0.25f;
+    private float beatTolerance = 0.15f;
 
     public Material Good;
     public Material Bad;
     public Material Neutral;
 
-    public MeshRenderer Feedback;
+    public MeshRenderer[] Feedback;
 
     public void onOnbeatDetected()
     {
         beatCounter++;
         beatTimer = 0f;
-        Debug.Log("Beat " + beatCounter);
-        if (Input.GetButtonDown("Fire1"))
+//        Debug.Log("Beat " + beatCounter);
+        foreach (MeshRenderer r in Feedback)
         {
-            Debug.Log("Fired on beat");
+            r.material = Good;
         }
     }
 
@@ -41,19 +41,12 @@ public class DebugBeatDetect : MonoBehaviour, AudioProcessor.AudioCallbacks
     void Update ()
     {
         beatTimer += Time.deltaTime;
-	    if (Input.GetButtonDown("Fire1") && beatTimer <= beatTolerance)
+        if (beatTimer > beatTolerance)
         {
-            Debug.Log("Fired on beat!");
-            Feedback.material = Good;
-        }
-        if (Input.GetButtonDown("Fire1") && beatTimer > beatTolerance)
-        {
-            Debug.Log("Fired too late");
-            Feedback.material = Bad;
-        }
-        if (Input.GetButtonUp("Fire1"))
-        {
-            Feedback.material = Neutral;
+            foreach (MeshRenderer mr in Feedback)
+            {
+                mr.material = Neutral;
+            }     
         }
     }
 }
