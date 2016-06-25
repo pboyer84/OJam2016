@@ -21,7 +21,10 @@ public class DebugBeatDetect : MonoBehaviour, AudioProcessor.AudioCallbacks
         Debug.Log("Beat " + beatCounter);
         foreach (MeshRenderer r in Feedback)
         {
-            r.material = Good;
+            if (r != null)
+            {
+                r.material = Good;
+            }
         }
     }
 
@@ -52,7 +55,10 @@ public class DebugBeatDetect : MonoBehaviour, AudioProcessor.AudioCallbacks
         {
             foreach (MeshRenderer mr in Feedback)
             {
-                mr.material = Neutral;
+                if (mr != null)
+                {
+                    mr.material = Neutral;
+                }
             }     
         }
     }
