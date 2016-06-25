@@ -3,6 +3,8 @@ using System.Collections;
 
 public class FireGun : MonoBehaviour {
 
+    public Transform GunPoint;
+    public Transform DebugTarget;
     public float FireDistance = 10f;
     public AudioClip HitVulnerableEnemy;
     public AudioClip HitImmuneEnemy;
@@ -10,9 +12,11 @@ public class FireGun : MonoBehaviour {
     public GameObject RailShotPrefab;
 
     private bool isGunFiring = false;
+    
     // Use this for initialization
-	void Start () {
-	    
+	void Start ()
+    {
+
 	}
 	
 	// Update is called once per frame
@@ -29,25 +33,33 @@ public class FireGun : MonoBehaviour {
 
     void FixedUpdate()
     {
+        Debug.DrawRay(GunPoint.position, GunPoint.forward, Color.cyan);
         if (isGunFiring)
         {
+            Debug.Log("Fire!");
             RaycastHit hitInfo;
-            Ray r = new Ray(transform.position, transform.forward);
+            Ray r = new Ray(GunPoint.position, GunPoint.forward);
             if (Physics.Raycast(r, out hitInfo, FireDistance))
             {
+                Debug.Log("Hit: " + hitInfo.transform.gameObject.name);
                 MeshRenderer mr = hitInfo.transform.gameObject.GetComponent<MeshRenderer>();
                 if (mr != null)
                 {
-                    if (mr.material.name == "Good")
+                    Debug.Log("mr name is " + mr.material.name);
+                    if (mr.material.name == "HitTheBeat (Instance)")
                     {
                         GameObject shot = (GameObject)Instantiate(RailShotPrefab, transform.position, Quaternion.identity);
                         RailShot s = shot.GetComponent<RailShot>();
-                        Vector3 shotStart = transform.position + (transform.forward * 0.1f);
-                        Vector3 shotEnd = transform.position + (transform.forward * FireDistance);
+                        Vector3 shotStart = GunPoint.position + (GunPoint.forward * 0.1f);
+                        Vector3 shotEnd = GunPoint.position + (GunPoint.forward * FireDistance);
                         s.Init(shotStart, shotEnd);
                         Player.Play();
                     }
                 }
+            }
+            else
+            {
+                Debug.Log("Hit nothing");
             }
 
         }

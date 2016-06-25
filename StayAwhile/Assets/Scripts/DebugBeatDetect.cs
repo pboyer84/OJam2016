@@ -4,11 +4,13 @@ public class DebugBeatDetect : MonoBehaviour, AudioProcessor.AudioCallbacks
 {
     private int beatCounter = 0;
     private float beatTimer;
-    private float beatTolerance = 0.15f;
-
+    public float beatTolerance = 0.25f;
+    public float knob = 10f;
     public Material Good;
     public Material Bad;
     public Material Neutral;
+    public bool BeatOccuring = true;
+
 
     public MeshRenderer[] Feedback;
 
@@ -16,7 +18,7 @@ public class DebugBeatDetect : MonoBehaviour, AudioProcessor.AudioCallbacks
     {
         beatCounter++;
         beatTimer = 0f;
-//        Debug.Log("Beat " + beatCounter);
+        Debug.Log("Beat " + beatCounter);
         foreach (MeshRenderer r in Feedback)
         {
             r.material = Good;
@@ -25,7 +27,12 @@ public class DebugBeatDetect : MonoBehaviour, AudioProcessor.AudioCallbacks
 
     public void onSpectrum(float[] spectrum)
     {
-
+        for (int i = 0; i < spectrum.Length; ++i)
+        {
+            Vector3 start = new Vector3(i, 0, 0);
+            Vector3 end = new Vector3(i, spectrum[i]*10, 0);
+            Debug.DrawLine(start, end, Color.white);
+        }
     }
 
 
