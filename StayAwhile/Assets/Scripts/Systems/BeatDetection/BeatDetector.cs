@@ -14,16 +14,25 @@ public class BeatDetector : MonoBehaviour
     private float HalfBeatTimer;
     private float QuarterBeatTimer;
 
+    public bool IsStarted { get; set; }
     public bool IsBeat { get; private set; }
     public bool IsHalfBeat { get; private set; }
     public bool IsQuarterBeat { get; private set; }
 
+    void Awake()
+    {
+        IsStarted = true;
+    }
+
     // Update is called once per frame
     void Update()
     {
-        UpdateBeatTimer();
-        UpdateHalfBeatTimer();
-        UpdateQuarterBeatTimer();
+        if (IsStarted)
+        {
+            UpdateBeatTimer();
+            UpdateHalfBeatTimer();
+            UpdateQuarterBeatTimer();
+        }
     }
 
     private void UpdateBeatTimer()

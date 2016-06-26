@@ -13,6 +13,18 @@ public class TurretController : MonoBehaviour {
     private EnemyHealth Health;
     private Vector3 Rotation = new Vector3(0f, 90f, 0f);
 
+    void Awake()
+    {
+        switch (SongManager.instance.songColor)
+        {
+            case TileType.Blue: MyBeat = SongManager.instance.blueSong.beat; break;
+            case TileType.Green: MyBeat = SongManager.instance.greenSong.beat; break;
+            case TileType.Red: MyBeat = SongManager.instance.redSong.beat; break;
+            case TileType.Yellow: MyBeat = SongManager.instance.yellowSong.beat; break;
+            default: MyBeat = SongManager.instance.redSong.beat; break;
+        }
+    }
+
     void Start () {
         Attack = GetComponent<EnemyFire>();
         Health = GetComponent<EnemyHealth>();
@@ -28,9 +40,16 @@ public class TurretController : MonoBehaviour {
         }
         if (MyBeat.IsHalfBeat)
         {
-            //StartCoroutine(FireWaitFire());
             Health.ToggleVulnerable();
             transform.Rotate(Rotation);
+        }
+        switch (SongManager.instance.songColor)
+        {
+            case TileType.Blue: MyBeat = SongManager.instance.blueSong.beat; break;
+            case TileType.Green: MyBeat = SongManager.instance.greenSong.beat; break;
+            case TileType.Red: MyBeat = SongManager.instance.redSong.beat; break;
+            case TileType.Yellow: MyBeat = SongManager.instance.yellowSong.beat; break;
+            default: MyBeat = SongManager.instance.redSong.beat; break;
         }
     }
 

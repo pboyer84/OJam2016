@@ -7,12 +7,40 @@ public class SongManager : MonoBehaviour {
 
     public TileType songColor = TileType.Red;
 
-    public AudioClip redSong;
-    public AudioClip blueSong;
-    public AudioClip greenSong;
-    public AudioClip yellowSong;
+    public AudioClip redAudioClip;
+    public AudioClip blueAudioClip;
+    public AudioClip greenAudioClip;
+    public AudioClip yellowAudioClip;
+
+    public Song redSong;
+    public Song blueSong;
+    public Song greenSong;
+    public Song yellowSong;
 
     public static SongManager instance;
+    
+    void Awake()
+    {
+        redSong = new Song();
+        redSong.audio = redAudioClip;
+        redSong.beat = (BeatDetector)gameObject.AddComponent(typeof(BeatDetector));
+        redSong.beat.BaseTimeInSecond = 2;
+        
+        blueSong = new Song();
+        blueSong.audio = blueAudioClip;
+        blueSong.beat = (BeatDetector)gameObject.AddComponent(typeof(BeatDetector));
+        blueSong.beat.BaseTimeInSecond = 2;
+
+        greenSong = new Song();
+        greenSong.audio = greenAudioClip;
+        greenSong.beat = (BeatDetector)gameObject.AddComponent(typeof(BeatDetector));
+        greenSong.beat.BaseTimeInSecond = 1;
+
+        yellowSong = new Song();
+        yellowSong.audio = yellowAudioClip;
+        yellowSong.beat = (BeatDetector)gameObject.AddComponent(typeof(BeatDetector));
+        yellowSong.beat.BaseTimeInSecond = 1;
+    }
 
     void Start () {
         instance = this;
@@ -54,19 +82,19 @@ public class SongManager : MonoBehaviour {
 
             if (songColor == TileType.Red)
             {
-                audio.clip = redSong;        
+                audio.clip = redSong.audio;        
             }
             if (songColor == TileType.Blue)
             {
-                audio.clip = blueSong;
+                audio.clip = blueSong.audio;
             }
             if (songColor == TileType.Green)
             {
-                audio.clip = greenSong;
+                audio.clip = greenSong.audio;
             }
             if (songColor == TileType.Yellow)
             {
-                audio.clip = yellowSong;
+                audio.clip = yellowSong.audio;
             }
 
             audio.Play();

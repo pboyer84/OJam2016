@@ -21,6 +21,15 @@ public class TankController : MonoBehaviour {
         tankSounds = GetComponent<AudioSource>();
         Health = GetComponent<EnemyHealth>();
         Movement = GetComponent<ChaseMove>();
+
+        switch (SongManager.instance.songColor)
+        {
+            case TileType.Blue: MyBeat = SongManager.instance.blueSong.beat; break;
+            case TileType.Green: MyBeat = SongManager.instance.greenSong.beat; break;
+            case TileType.Red: MyBeat = SongManager.instance.redSong.beat; break;
+            case TileType.Yellow: MyBeat = SongManager.instance.yellowSong.beat; break;
+            default: MyBeat = SongManager.instance.redSong.beat; break;
+        }
     }
 
 	// Use this for initialization
@@ -35,6 +44,15 @@ public class TankController : MonoBehaviour {
         {
             Health.ToggleVulnerable();
             Movement.ToggleSpeed();
+        }
+
+        switch (SongManager.instance.songColor)
+        {
+            case TileType.Blue: MyBeat = SongManager.instance.blueSong.beat; break;
+            case TileType.Green: MyBeat = SongManager.instance.greenSong.beat; break;
+            case TileType.Red: MyBeat = SongManager.instance.redSong.beat; break;
+            case TileType.Yellow: MyBeat = SongManager.instance.yellowSong.beat; break;
+            default: MyBeat = SongManager.instance.redSong.beat; break;
         }
     }
 }
