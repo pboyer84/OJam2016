@@ -24,5 +24,30 @@ public abstract class TileFunc
 			return Color.red;
 		}
 	}
+
+    public static TileType randomType()
+    {
+        int choice = UnityEngine.Random.Range(1, 4);
+        
+        if (choice == 1)
+        {
+            return TileType.Red;
+        }
+        else if (choice == 2)
+        {
+            return TileType.Blue;
+        }
+        else if (choice == 3)
+        {
+            return TileType.Green;
+        }
+        else if (choice == 4)
+        {
+            return TileType.Yellow;
+        }
+        else {
+            return TileType.Red;
+        }
+    }
 }
 

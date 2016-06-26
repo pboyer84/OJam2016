@@ -6,8 +6,10 @@ public class ModuleSystem : MonoBehaviour {
 
 	private string filePath = "Assets/Resources/Prefabs/Modules";
 
+    public GameObject sphere;
+
 	private static ModuleSystem instance = null;
-	private static ModuleSystem get() {
+	public static ModuleSystem get() {
 		if (instance == null) {
 
 			GameObject found = GameObject.Find ("ModuleSystem");
@@ -26,31 +28,44 @@ public class ModuleSystem : MonoBehaviour {
 	}
 
 	public void Start() {
+        GameObject.Instantiate(sphere);
+
 		generateNext (-1);
 	}
 
 
 	List<TileRoot> roots = new List<TileRoot>();
 
-	int depth = -1;
+	public int depth = -1;
 
 	public static void generateNext(int depth) {
-		while (get().depth - 4 <= depth) {
+		while (get().depth <= depth + 1)
+        {
 
-			get ().depth++;
+            get().depth++;
+           
 
-			GameObject area = Instantiate(Resources.Load<GameObject> ("Prefabs/Modules/1"));
-			if (area) {
-			//	area.transform.parent = get ().gameObject.transform;
-				area.transform.parent = get().gameObject.transform;
+           
+            generate(-1);
+            generate(0);
+        }
 
-				area.transform.position = new Vector3 (0, 0, get ().depth * 70);
-				area.GetComponent<TileRoot> ().depth = get ().depth;
+    }
 
-				get ().roots.Add (area.GetComponent<TileRoot> ());
-			}
+    private static void generate(int side)
+    {
+        string chosen = get().depth == 0 ? "0" : Random.Range(1, 10).ToString();
 
-		}
 
-	}
+        GameObject area = Instantiate(Resources.Load<GameObject>("Prefabs/Modules/" + chosen));
+        if (area)
+        {
+            area.transform.parent = get().gameObject.transform;
+
+            area.transform.position = new Vector3(side * 70, 0, get().depth * 70);
+            area.GetComponent<TileRoot>().depth = get().depth;
+
+            get().roots.Add(area.GetComponent<TileRoot>());
+        }
+    }
 }

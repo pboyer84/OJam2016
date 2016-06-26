@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
-public class PlayerMove : MonoBehaviour {
+public class PlayerMove : MonoBehaviour, SongListener
+{
 
     public float WalkSpeed = 5f;
 
@@ -19,8 +20,8 @@ public class PlayerMove : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
-	    
-	}
+        SongEvents.Add(this);
+    }
 	
 	// Update is called once per frame
 	void Update ()
@@ -35,5 +36,44 @@ public class PlayerMove : MonoBehaviour {
         transform.Rotate(Vector3.up, xMouse * 15f);
         Vector3 movement = transform.forward * zMov + transform.right * xMov;
         myBody.SimpleMove(movement * WalkSpeed);
+    }
+
+    Tile lastTile = null;
+    TileType currentSong = TileType.Red;
+    void OnTriggerEnter(Collider other)
+    {
+        Tile isTile = other.gameObject.GetComponent<Tile>();
+        if (isTile)
+        {
+            if (lastTile == null)
+            {
+                lastTile = isTile;
+                return;
+            }
+
+            if (lastTile.tileType == currentSong)
+            {
+                Debug.Log(currentSong);
+
+                if (isTile.tileType != lastTile.tileType)
+                {
+                    GameObject.Destroy(gameObject);
+                }
+            }
+
+            lastTile = isTile;
+
+
+        }
+        Debug.Log(other.name);
+        //        Destroy(other.gameObject);
+    }
+
+    public void onSongEvent(SongEventType eventType, TileType songType)
+    {
+        if (eventType == SongEventType.OnSongStarted)
+        {
+            currentSong = songType;
+        }
     }
 }
