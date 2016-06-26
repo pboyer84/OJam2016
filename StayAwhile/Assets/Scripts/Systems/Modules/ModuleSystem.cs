@@ -39,6 +39,16 @@ public class ModuleSystem : MonoBehaviour {
 	public int depth = -1;
 
 	public static void generateNext(int depth) {
+        Debug.Log("Num: " + get().roots.Count);
+
+        while (get().roots.Count > 6)
+        {
+            GameObject.Destroy(get().roots[0].gameObject);
+            get().roots.RemoveAt(0);
+
+            
+        }
+
 		while (get().depth <= depth + 1)
         {
 
