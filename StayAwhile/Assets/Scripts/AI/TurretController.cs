@@ -43,6 +43,8 @@ public class TurretController : MonoBehaviour {
             Health.ToggleVulnerable();
             transform.Rotate(Rotation);
         }
+
+		if(SongManager.instance)
         switch (SongManager.instance.songColor)
         {
             case TileType.Blue: MyBeat = SongManager.instance.blueSong.beat; break;

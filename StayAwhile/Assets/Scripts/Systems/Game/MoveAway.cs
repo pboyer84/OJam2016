@@ -52,6 +52,7 @@ public class MoveAway : MonoBehaviour, AudioProcessor.AudioCallbacks, SongListen
 		SongEvents.Remove (this);
 
 		AudioProcessor processor = FindObjectOfType<AudioProcessor>();
+		if(processor)
 		processor.removeAudioCallback (this);
 
 	}

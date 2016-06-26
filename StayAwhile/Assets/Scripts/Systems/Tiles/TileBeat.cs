@@ -33,6 +33,7 @@ public class TileBeat : MonoBehaviour, AudioProcessor.AudioCallbacks, SongListen
 		SongEvents.Remove (this);
 
 		AudioProcessor processor = FindObjectOfType<AudioProcessor>();
+		if(processor)
 		processor.removeAudioCallback (this);
 
 	}
