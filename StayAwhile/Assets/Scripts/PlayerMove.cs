@@ -34,6 +34,6 @@ public class PlayerMove : MonoBehaviour {
     {
         transform.Rotate(Vector3.up, xMouse * 15f);
         Vector3 movement = transform.forward * zMov + transform.right * xMov;
-        myBody.Move(movement * WalkSpeed * Time.deltaTime);
+        myBody.SimpleMove(movement * WalkSpeed);
     }
 }

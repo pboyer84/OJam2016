@@ -2,7 +2,7 @@
 
 [RequireComponent(typeof(EnemyFire))]
 [RequireComponent(typeof(EnemyHealth))]
-public class EnemyController : MonoBehaviour {
+public class DroneController : MonoBehaviour {
 
     public BeatDetector MyBeat;
     private EnemyFire Attack;

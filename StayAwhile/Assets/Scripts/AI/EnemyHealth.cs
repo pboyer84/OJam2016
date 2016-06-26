@@ -1,7 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-[RequireComponent(typeof(MeshRenderer))]
 public class EnemyHealth : MonoBehaviour {
 
     public bool IsVulnerable { get; private set; }
@@ -10,13 +8,13 @@ public class EnemyHealth : MonoBehaviour {
     public Material Immune;
     public Material Vulnerable;
 
-    private MeshRenderer Display;
+    private MeshRenderer[] Display;
 
     private float vulnerabilityTimer = 0f;
 
     void Awake()
     {
-        Display = GetComponent<MeshRenderer>();
+        Display = GetComponentsInChildren<MeshRenderer>();
     }
 
     // Use this for initialization
@@ -46,13 +44,19 @@ public class EnemyHealth : MonoBehaviour {
     private void BecomeVulnerable()
     {
         IsVulnerable = true;
-        Display.material = Vulnerable;
+        foreach (Renderer r in Display)
+        {
+            r.material = Vulnerable;
+        }
     }
 
     private void BecomeImmune()
     {
         IsVulnerable = false;
-        Display.material = Immune;
+        foreach (Renderer r in Display)
+        {
+            r.material = Immune;
+        }
     }
 
 }

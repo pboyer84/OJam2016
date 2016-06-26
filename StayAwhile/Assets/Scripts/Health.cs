@@ -9,7 +9,10 @@ public class Health : MonoBehaviour {
     public Image DamageSplash;
     public float DamageSplashDuration = 0.1f;
     private float timer;
-    
+    private float shakeAmount = 0.3f;
+    private float shake = 0f;
+    private float decreaseFactor = 2.0f;
+
     void Start()
     {
         ConfigureHUDForPlayer();
@@ -21,8 +24,19 @@ public class Health : MonoBehaviour {
         if (Display != null)
         {
             Display.text = Value.ToString();
-        }  
-	}
+        }
+
+        if (shake > 0)
+        {
+            Camera.main.transform.localPosition = Random.insideUnitSphere * shakeAmount;
+            shake -= Time.deltaTime * decreaseFactor;
+
+        }
+        else
+        {
+            shake = 0.0f;
+        }
+    }
 
     public void DisplayDamageFx()
     {
@@ -31,6 +45,11 @@ public class Health : MonoBehaviour {
             DamageSplash.enabled = true;
             StartCoroutine(WaitThenRemoveDamageSplash());
         }
+    }
+
+    public void ShakeCamera()
+    {
+        shake = 1.0f;
     }
 
     IEnumerator WaitThenRemoveDamageSplash()

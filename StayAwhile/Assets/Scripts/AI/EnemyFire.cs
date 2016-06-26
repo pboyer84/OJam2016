@@ -13,8 +13,7 @@ public class EnemyFire : MonoBehaviour {
 	
     public void Fire()
     {
-        GameObject projectile = (GameObject)Instantiate(ProjectilePrefab, ProjectileSpawn.position, Quaternion.identity);
-        Fireball fb = projectile.GetComponent<Fireball>();
-        fb.Orient(player);
+        Vector3 inFront = transform.position + transform.forward;
+        GameObject projectile = (GameObject)Instantiate(ProjectilePrefab, ProjectileSpawn.position, transform.rotation);
     }
 }

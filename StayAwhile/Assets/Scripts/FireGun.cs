@@ -44,7 +44,7 @@ public class FireGun : MonoBehaviour {
                         Vector3 shotEnd = GunPoint.position + (GunPoint.forward * FireDistance);
                         s.Init(shotStart, shotEnd);
                         Player.Play();
-                        Destroy(hitInfo.collider.gameObject);
+                        Destroy(hitInfo.collider.gameObject.transform.parent.gameObject);
                     }
                     else
                     {

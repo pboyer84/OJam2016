@@ -63,13 +63,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\AI\ChaseMove.cs" />
+    <Compile Include="Assets\Scripts\AI\DroneController.cs" />
+    <Compile Include="Assets\Scripts\AI\EnemyFire.cs" />
+    <Compile Include="Assets\Scripts\AI\EnemyHealth.cs" />
+    <Compile Include="Assets\Scripts\AI\Explosion.cs" />
+    <Compile Include="Assets\Scripts\AI\Fireball.cs" />
+    <Compile Include="Assets\Scripts\AI\MoveInCircle.cs" />
+    <Compile Include="Assets\Scripts\AI\TankController.cs" />
+    <Compile Include="Assets\Scripts\AI\TankShell.cs" />
+    <Compile Include="Assets\Scripts\AI\TouchAttack.cs" />
+    <Compile Include="Assets\Scripts\AI\TurretController.cs" />
     <Compile Include="Assets\Scripts\AudioProcessor.cs" />
     <Compile Include="Assets\Scripts\DebugBeatDetect.cs" />
-    <Compile Include="Assets\Scripts\EnemyController.cs" />
-    <Compile Include="Assets\Scripts\EnemyFire.cs" />
-    <Compile Include="Assets\Scripts\EnemyHealth.cs" />
     <Compile Include="Assets\Scripts\FireGun.cs" />
-    <Compile Include="Assets\Scripts\Fireball.cs" />
     <Compile Include="Assets\Scripts\HUD.cs" />
     <Compile Include="Assets\Scripts\Health.cs" />
     <Compile Include="Assets\Scripts\MouseLook.cs" />
