@@ -27,7 +27,7 @@ public abstract class TileFunc
 
     public static TileType randomType()
     {
-        int choice = UnityEngine.Random.Range(1, 4);
+        int choice = UnityEngine.Random.Range(1, 5);
         
         if (choice == 1)
         {
