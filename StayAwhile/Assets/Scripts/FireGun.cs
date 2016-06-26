@@ -43,12 +43,14 @@ public class FireGun : MonoBehaviour {
                         Vector3 shotStart = GunPoint.position + (GunPoint.forward * 0.1f);
                         Vector3 shotEnd = GunPoint.position + (GunPoint.forward * FireDistance);
                         s.Init(shotStart, shotEnd);
+                        Player.clip = HitVulnerableEnemy;
                         Player.Play();
                         Destroy(hitInfo.collider.gameObject.transform.parent.gameObject);
                     }
                     else
                     {
-                        //play weapon error sound
+                        Player.clip = HitImmuneEnemy;
+                        Player.Play();
                     }
                 }
 
