@@ -28,6 +28,16 @@ public class TileBeat : MonoBehaviour, AudioProcessor.AudioCallbacks, SongListen
             enabledSong = true;
         }
     }
+
+	void OnDestroy() {
+		SongEvents.Remove (this);
+
+		AudioProcessor processor = FindObjectOfType<AudioProcessor>();
+		if(processor)
+		processor.removeAudioCallback (this);
+
+	}
+
     
     float beat = 0;
 
