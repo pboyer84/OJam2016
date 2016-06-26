@@ -13,6 +13,9 @@ public class Tile : MonoBehaviour
     public GameObject tilePulse;
     public GameObject tileBeat;
 
+    Color color;
+    float alpha = 0;
+
     void Start()
     {
         tilePulse = Instantiate(Resources.Load<GameObject>("Prefabs/Tiles/TilePulse"));
@@ -27,11 +30,29 @@ public class Tile : MonoBehaviour
         tilePulse.GetComponent<TilePulse>().tileType = tileType;
         tileBeat.GetComponent<TileBeat>().tileType = tileType;
 
-        GetComponent<Renderer>().material.SetColor("_Color", TileFunc.toColor(tileType));
+        color = TileFunc.toColor(tileType);
+        color.a = 0;
+
+        GetComponent<Renderer>().material.SetColor("_Color", color);
+
+        
 
         GetComponent<BoxCollider>().isTrigger = true;
         GetComponent<BoxCollider>().size = new Vector3(1.01f, 10, 1.01f);
 
+    }
+
+    void Update()
+    {
+        alpha += Time.deltaTime * 0.04f;
+        if(alpha > 1.0f)
+        {
+            alpha = 1.0f;
+        }
+
+        color.a = alpha;
+
+        GetComponent<Renderer>().material.SetColor("_Color", color);
     }
 
     public void OnDrawGizmos()
@@ -40,7 +61,7 @@ public class Tile : MonoBehaviour
             if (GetComponent<Renderer>())
                 if (GetComponent<Renderer>())
                 {
-                    //   GetComponent<Renderer>().material.SetColor("_Color", TileFunc.toColor(tileType));
+                       GetComponent<Renderer>().material.SetColor("_Color", TileFunc.toColor(tileType));
                 }
     }
 }
