@@ -80,7 +80,6 @@ public class TileBeat : MonoBehaviour, AudioProcessor.AudioCallbacks, SongListen
         GetComponent<Renderer>().material.SetFloat("_rampup", rampTime);
 
 
-
         if (enabledSong)
         {
             rampTime += Time.deltaTime * 2.0f;

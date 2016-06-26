@@ -56,7 +56,7 @@ public class Box : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(alpha);
+//        Debug.Log(alpha);
         
         alpha += Time.deltaTime * 0.04f;
         if (alpha > 1.0f)

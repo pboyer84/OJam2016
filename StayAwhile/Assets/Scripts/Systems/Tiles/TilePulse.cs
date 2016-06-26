@@ -88,12 +88,19 @@ public class TilePulse : MonoBehaviour, AudioProcessor.AudioCallbacks, SongListe
 
     void Update()
     {
-        pulse += 10;
+//		Debug.Log ("Beat" + beat);
+		pulse += 12.0f * beat;
+        pulse += 8;
         pulse += Time.deltaTime * beat;
 
         GetComponent<Renderer>().material.SetVector("_origin", gameObject.transform.position);
 
         GetComponent<Renderer>().material.SetFloat("_pulse", pulse);
+
+
+		GetComponent<Renderer>().material.SetFloat("_beat", beat);
+
+
         GetComponent<Renderer>().material.SetFloat("_rampup", rampTime);
 
 
