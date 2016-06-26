@@ -57,7 +57,7 @@ public class FireGun : MonoBehaviour {
             }
             else
             {
-                Debug.Log("Hit nothing");
+
             }
 
         }
