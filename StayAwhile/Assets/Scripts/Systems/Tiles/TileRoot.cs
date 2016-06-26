@@ -21,32 +21,29 @@ public class TileRoot : MonoBehaviour
             generateEnemy();
 
 
-            if (depth > 6)
+            if (depth > 7)
             {
                 generateEnemy();
             }
-
-            if (depth > 9)
-            {
-                generateEnemy();
-            }
+            
         }
 
     }
 
     private void generateEnemy()
     {
-        int randomEnemy = Random.Range(0, 2);
+        int randomEnemy = Random.Range(0, 3);
 
-        GameObject enemy = Instantiate(Resources.Load<GameObject>("Prefabs/Enemies/" + (randomEnemy == 1 ? "Drone" : randomEnemy == 2 ? "Tank" : "Turret")));
+        GameObject enemy = Instantiate(Resources.Load<GameObject>("Prefabs/Enemies/" + (randomEnemy == 1 ? "Tank" : randomEnemy == 2 ? "Drone" : "Turret")));
 
         Tile[] tiles = GetComponentsInChildren<Tile>();
 
 
-        int randomSpawn = Random.Range(0, tiles.Length - 1);
+        int randomSpawn = Random.Range(0, tiles.Length);
 
+        enemy.transform.transform.parent = gameObject.transform;
         enemy.transform.position = tiles[randomSpawn].transform.position;
-        enemy.transform.position += new Vector3(0, 0.654f, 0.0f);
+        enemy.transform.position += new Vector3(0, 0.654f + randomEnemy == 1 ? 3.5f : 0.0f, 0.0f);
     }
 
     void OnTriggerEnter(Collider col)

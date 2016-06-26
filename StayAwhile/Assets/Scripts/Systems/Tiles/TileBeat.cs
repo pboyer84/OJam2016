@@ -15,12 +15,7 @@ public class TileBeat : MonoBehaviour, AudioProcessor.AudioCallbacks, SongListen
     void Start()
     {
         SongEvents.Add(this);
-
-        Mesh mesh = GetComponent<MeshFilter>().mesh;
-        Bounds bounds = mesh.bounds;
-        bounds.Expand(300000.0f);
-        mesh.bounds = bounds;
-
+        
         AudioProcessor processor = FindObjectOfType<AudioProcessor>();
         processor.addAudioCallback(this);
 
@@ -28,8 +23,7 @@ public class TileBeat : MonoBehaviour, AudioProcessor.AudioCallbacks, SongListen
 
         transform.localScale *= 1.15f;
 
-
-        if (tileType == TileType.Red)
+        if (tileType == TileType.Red && ModuleSystem.get().depth < 3)
         {
             enabledSong = true;
         }

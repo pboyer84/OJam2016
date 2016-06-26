@@ -31,7 +31,8 @@ public class TilePulse : MonoBehaviour, AudioProcessor.AudioCallbacks, SongListe
         transform.localScale *= 0.85f;
 
 
-        if (tileType == TileType.Red)
+
+        if (tileType == TileType.Red && ModuleSystem.get().depth < 3)
         {
             enabledSong = true;
         }

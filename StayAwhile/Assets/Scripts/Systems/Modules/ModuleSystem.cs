@@ -31,6 +31,7 @@ public class ModuleSystem : MonoBehaviour {
         GameObject.Instantiate(sphere);
 
 		generateNext (-1);
+        
 	}
 
 
