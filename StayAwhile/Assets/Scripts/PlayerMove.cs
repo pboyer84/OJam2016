@@ -53,10 +53,12 @@ public class PlayerMove : MonoBehaviour, SongListener
 
             if (lastTile.tileType == currentSong)
             {
-                Debug.Log(currentSong);
+              
 
                 if (isTile.tileType != lastTile.tileType)
                 {
+                    Debug.Log("Player is leaving a song tile while its music is still playing. Kill the player for not staying awhile to listen.");
+
                     GameObject.Destroy(gameObject);
                 }
             }
