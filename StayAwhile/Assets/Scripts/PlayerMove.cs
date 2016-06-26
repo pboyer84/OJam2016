@@ -59,7 +59,8 @@ public class PlayerMove : MonoBehaviour, SongListener
                 {
                     Debug.Log("Player is leaving a song tile while its music is still playing. Kill the player for not staying awhile to listen.");
 
-                    GameObject.Destroy(gameObject);
+                    Health playerHealth = GetComponent<Health>();
+                    playerHealth.Value -= 1000;
                 }
             }
 

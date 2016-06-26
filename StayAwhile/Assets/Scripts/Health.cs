@@ -12,6 +12,7 @@ public class Health : MonoBehaviour {
     private float shakeAmount = 0.3f;
     private float shake = 0f;
     private float decreaseFactor = 2.0f;
+    private bool alive = true;
 
     void Start()
     {
@@ -20,6 +21,13 @@ public class Health : MonoBehaviour {
 
     // Update is called once per frame
 	void Update () {
+
+        if (Value <= 0 && alive)
+        {
+            alive = false;
+            Die();
+            StartCoroutine(FallSideways());
+        }
 
         if (Display != null)
         {
@@ -74,4 +82,28 @@ public class Health : MonoBehaviour {
             DamageSplash = foo.DamageSplash;
         }
     }
+
+    public void Die()
+    {
+        DamageSplash.enabled = true;
+        MouseLook mouseControls = GetComponentInChildren<MouseLook>();
+        PlayerMove moveControls = GetComponent<PlayerMove>();
+        mouseControls.enabled = false;
+        moveControls.enabled = false;
+
+    }
+
+    IEnumerator FallSideways()
+    {
+        int increment = 5;
+        Vector3 fallRotation = new Vector3(0f, 0f, increment);
+
+        for (int i = 0; i < 90; i+=increment)
+        {
+            yield return new WaitForSeconds(0.01f);
+            transform.Rotate(fallRotation);
+        }
+    }
+
+
 }
