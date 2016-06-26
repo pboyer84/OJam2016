@@ -40,7 +40,7 @@ public class SongEvents
 
     public static void Occured(SongEventType eventType, TileType songType)
     {
-        Debug.Log("Occured");
+//        Debug.Log("Occured");
 
         foreach (SongListener item in get().list)
         {

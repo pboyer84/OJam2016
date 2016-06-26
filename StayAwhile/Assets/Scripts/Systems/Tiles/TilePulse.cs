@@ -36,7 +36,16 @@ public class TilePulse : MonoBehaviour, AudioProcessor.AudioCallbacks, SongListe
         {
             enabledSong = true;
         }
-    }
+	}
+
+	void OnDestroy() {
+		SongEvents.Remove (this);
+
+		AudioProcessor processor = FindObjectOfType<AudioProcessor>();
+		processor.removeAudioCallback (this);
+
+	}
+
 
     float pulse = 0;
 

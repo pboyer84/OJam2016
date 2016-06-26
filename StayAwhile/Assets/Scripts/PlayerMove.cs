@@ -68,7 +68,7 @@ public class PlayerMove : MonoBehaviour, SongListener
 
 
         }
-        Debug.Log(other.name);
+//        Debug.Log(other.name);
         //        Destroy(other.gameObject);
     }
 
