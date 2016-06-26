@@ -4,68 +4,67 @@ using System;
 
 public class MoveAway : MonoBehaviour, AudioProcessor.AudioCallbacks, SongListener
 {
-    public void onOnbeatDetected()
-    {
-        
-    }
+	public void onOnbeatDetected()
+	{
 
-    public void onSongEvent(SongEventType eventType, TileType songType)
-    {
-        if(eventType == SongEventType.OnSongStarted)
-        {
-			
-        }
-    }
+	}
+
+	public void onSongEvent(SongEventType eventType, TileType songType)
+	{
+		if(eventType == SongEventType.OnSongStarted)
+		{
+
+			GetComponent<Renderer>().material.SetColor("_Color", TileFunc.toColor(songType));
+		}
+	}
 
 
-    float beat = 0;
-    public void onSpectrum(float[] spectrum)
-    {
-        beat = 0;
+	float beat = 0;
+	public void onSpectrum(float[] spectrum)
+	{
+		beat = 0;
 
-        for (int i = 0; i < spectrum.Length; ++i)
-        {
-            Vector3 start = new Vector3(i, 0, 0);
-            Vector3 end = new Vector3(i, spectrum[i] * 10, 0);
+		for (int i = 0; i < spectrum.Length; ++i)
+		{
+			Vector3 start = new Vector3(i, 0, 0);
+			Vector3 end = new Vector3(i, spectrum[i] * 10, 0);
 
-            if (spectrum[i] * 10 > beat)
-            {
-                beat = spectrum[i] * 10.0f;
-            }
-            Debug.DrawLine(start, end, Color.white);
-        }
-    }
+			if (spectrum[i] * 10 > beat)
+			{
+				beat = spectrum[i] * 10.0f;
+			}
+			Debug.DrawLine(start, end, Color.white);
+		}
+	}
 
-    // Use this for initialization
+	// Use this for initialization
 
-    public float speed = 10.0f;
+	public float speed = 10.0f;
 
-    void Start () {
-        SongEvents.Add(this);
-        AudioProcessor processor = FindObjectOfType<AudioProcessor>();
-        processor.addAudioCallback(this);
+	void Start () {
+		SongEvents.Add(this);
+		AudioProcessor processor = FindObjectOfType<AudioProcessor>();
+		processor.addAudioCallback(this);
 
-        GetComponent<Renderer>().material.SetColor("_Color", TileFunc.toColor(TileType.Red));
-    }
+		GetComponent<Renderer>().material.SetColor("_Color", TileFunc.toColor(TileType.Red));
+	}
 
 	void OnDestroy() {
 		SongEvents.Remove (this);
 
 		AudioProcessor processor = FindObjectOfType<AudioProcessor>();
 		if(processor)
-		processor.removeAudioCallback (this);
+			processor.removeAudioCallback (this);
 
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
-        GetComponent<Light>().intensity = beat;
- 
+		GetComponent<Light>().intensity = beat;
 
-
-        if (ModuleSystem.get().depth > 0 && ModuleSystem.get().depth * 70.0f > gameObject.transform.position.z)
-        {
-            gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z + Time.deltaTime * speed);
-        }
-    }
+		if (ModuleSystem.get().depth > 0 && ModuleSystem.get().depth * 70.0f > gameObject.transform.position.z)
+		{
+			gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z + Time.deltaTime * speed);
+		}
+	}
 }
