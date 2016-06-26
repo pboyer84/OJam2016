@@ -57,7 +57,7 @@ public class ModuleSystem : MonoBehaviour {
            
 
            
-            generate(-1);
+         //   generate(-1);
             generate(0);
         }
 

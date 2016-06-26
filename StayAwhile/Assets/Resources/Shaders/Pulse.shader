@@ -7,6 +7,7 @@
 		_color("Color", Color) = (1,1,1,1)
 		_origin("Origin", Vector) = (1,1,1,1)
 		_rampup("RampUp", Float) = 0
+		_beat("Beat", Float) = 1
 	}
 		SubShader
 	{
@@ -43,6 +44,8 @@
 
 	float4 _MainTex_ST;
 	float _rampup;
+	float _beat;
+	
 
 	v2f vert(appdata input)
 	{
@@ -60,10 +63,14 @@
 		float reduce = delta < 1.0f ? delta  / 1.0f: delta;
 
 		output.position = input.position;
-		output.position.y = output.position.y +  sin(delta * _pulse * 0.01) * 9.26f / delta *_rampup;
+		output.position.y = output.position.y +  sin(delta * _pulse * 0.01) * 1.16f / delta *_rampup;
 
 
 		output.position = mul(UNITY_MATRIX_MVP, output.position);
+
+
+		float jump = _beat * 500.0f > 3 ? 3 : _beat * 500.0f;
+		output.position.y = output.position.y + jump *_rampup;
 
 		output.uv = TRANSFORM_TEX(input.uv, _mainTexture);
 		return output;
