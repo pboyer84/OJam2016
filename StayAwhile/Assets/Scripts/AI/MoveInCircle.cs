@@ -10,11 +10,16 @@ public class MoveInCircle : MonoBehaviour {
     private Rigidbody myBody;
     private Vector3 anchor;
     private GameObject player;
-	void Awake()
+
+    void Awake()
     {
         myBody = GetComponent<Rigidbody>();
-        anchor = transform.position;
         player = GameObject.FindGameObjectWithTag("Player");
+    }
+
+    void Start()
+    {
+        anchor = transform.position;
     }
 	
 	// Update is called once per frame
