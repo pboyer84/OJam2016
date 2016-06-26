@@ -5,8 +5,8 @@ public class Fireball : MonoBehaviour {
 
     public float Speed;
     public int Damage;
-
     private Rigidbody myBody;
+
 
     void Awake()
     {
@@ -42,5 +42,4 @@ public class Fireball : MonoBehaviour {
         }
         Destroy(gameObject);
     }
-
 }

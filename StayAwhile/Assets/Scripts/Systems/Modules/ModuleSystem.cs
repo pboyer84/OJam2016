@@ -45,9 +45,6 @@ public class ModuleSystem : MonoBehaviour {
 				area.transform.parent = get().gameObject.transform;
 
 				area.transform.position = new Vector3 (0, 0, get ().depth * 70);
-
-				Debug.Log ("aasdasd");
-
 				area.GetComponent<TileRoot> ().depth = get ().depth;
 
 				get ().roots.Add (area.GetComponent<TileRoot> ());

@@ -29,17 +29,14 @@ public class FireGun : MonoBehaviour {
     {
         if (isGunFiring)
         {
-            Debug.Log("Fire!");
             RaycastHit hitInfo;
             Ray r = new Ray(GunPoint.position, GunPoint.forward);
             if (Physics.Raycast(r, out hitInfo, FireDistance))
             {
-                Debug.Log("Hit: " + hitInfo.transform.gameObject.name);
-                MeshRenderer mr = hitInfo.transform.gameObject.GetComponent<MeshRenderer>();
-                if (mr != null)
+                EnemyHealth health = hitInfo.transform.gameObject.GetComponent<EnemyHealth>();
+                if (health != null)
                 {
-                    Debug.Log("mr name is " + mr.material.name);
-                    if (mr.material.name == "HitTheBeat (Instance)")
+                    if (health.IsVulnerable)
                     {
                         GameObject shot = (GameObject)Instantiate(RailShotPrefab, transform.position, Quaternion.identity);
                         RailShot s = shot.GetComponent<RailShot>();
@@ -48,6 +45,10 @@ public class FireGun : MonoBehaviour {
                         s.Init(shotStart, shotEnd);
                         Player.Play();
                         Destroy(hitInfo.collider.gameObject);
+                    }
+                    else
+                    {
+                        //play weapon error sound
                     }
                 }
 
