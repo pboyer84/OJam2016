@@ -46,6 +46,8 @@ public class MoveAway : MonoBehaviour, AudioProcessor.AudioCallbacks, SongListen
         SongEvents.Add(this);
         AudioProcessor processor = FindObjectOfType<AudioProcessor>();
         processor.addAudioCallback(this);
+
+        GetComponent<Renderer>().material.SetColor("_Color", TileFunc.toColor(TileType.Red));
     }
 	
 	// Update is called once per frame
