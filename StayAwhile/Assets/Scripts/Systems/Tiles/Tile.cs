@@ -28,7 +28,7 @@ public class Tile : MonoBehaviour
         tileBeat.transform.localPosition = Vector3.zero;
 
         tilePulse.GetComponent<TilePulse>().tileType = tileType;
-        tileBeat.GetComponent<TileBeat>().tileType = tileType;
+        //tileBeat.GetComponent<TileBeat>().tileType = tileType;
 
         color = TileFunc.toColor(tileType);
         color.a = 0;
