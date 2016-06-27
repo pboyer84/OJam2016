@@ -12,9 +12,11 @@ public class TurretController : MonoBehaviour {
     private EnemyFire Attack;
     private EnemyHealth Health;
     private Vector3 Rotation = new Vector3(0f, 90f, 0f);
+    private GameObject TurretHead;
 
     void Awake()
     {
+        TurretHead = transform.FindChild("Turret_Head").gameObject;
         switch (SongManager.instance.songColor)
         {
             case TileType.Blue: MyBeat = SongManager.instance.blueSong.beat; break;
@@ -41,7 +43,7 @@ public class TurretController : MonoBehaviour {
         if (MyBeat.IsHalfBeat)
         {
             Health.ToggleVulnerable();
-            transform.Rotate(Rotation);
+            TurretHead.transform.Rotate(Rotation);
         }
 
 		if(SongManager.instance)

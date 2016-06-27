@@ -45,7 +45,7 @@ public class FireGun : MonoBehaviour {
                         s.Init(shotStart, shotEnd);
                         Player.clip = HitVulnerableEnemy;
                         Player.Play();
-                        Destroy(hitInfo.collider.gameObject.transform.parent.gameObject);
+                        Destroy(hitInfo.collider.gameObject);
                     }
                     else
                     {

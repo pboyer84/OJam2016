@@ -17,17 +17,6 @@ public class EnemyHealth : MonoBehaviour {
         Display = GetComponentsInChildren<MeshRenderer>();
     }
 
-    // Use this for initialization
-	void Start ()
-    {
-	
-	}
-	
-	// Update is called once per frame
-	void Update ()
-    {
-
-	}
 
     public void ToggleVulnerable()
     {
@@ -46,7 +35,8 @@ public class EnemyHealth : MonoBehaviour {
         IsVulnerable = true;
         foreach (Renderer r in Display)
         {
-            r.material = Vulnerable;
+            //r.material = Vulnerable;
+            r.material.color = Color.green;
         }
     }
 
@@ -55,7 +45,8 @@ public class EnemyHealth : MonoBehaviour {
         IsVulnerable = false;
         foreach (Renderer r in Display)
         {
-            r.material = Immune;
+            //r.material = Immune;
+            r.material.color = Color.white;
         }
     }
 

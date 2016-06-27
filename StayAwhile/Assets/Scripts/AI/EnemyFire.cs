@@ -13,7 +13,6 @@ public class EnemyFire : MonoBehaviour {
 	
     public void Fire()
     {
-        Vector3 inFront = transform.position + transform.forward;
-        GameObject projectile = (GameObject)Instantiate(ProjectilePrefab, ProjectileSpawn.position, transform.rotation);
+        GameObject projectile = (GameObject)Instantiate(ProjectilePrefab, ProjectileSpawn.position, ProjectileSpawn.rotation);
     }
 }

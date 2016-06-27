@@ -63,6 +63,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\MainMusic.cs" />
     <Compile Include="Assets\Scripts\AI\ChaseMove.cs" />
     <Compile Include="Assets\Scripts\AI\DroneController.cs" />
     <Compile Include="Assets\Scripts\AI\EnemyFire.cs" />
@@ -80,17 +81,29 @@
     <Compile Include="Assets\Scripts\HUD.cs" />
     <Compile Include="Assets\Scripts\Health.cs" />
     <Compile Include="Assets\Scripts\MouseLook.cs" />
+    <Compile Include="Assets\Scripts\PauseMenu.cs" />
     <Compile Include="Assets\Scripts\PlayerHUDSetup.cs" />
     <Compile Include="Assets\Scripts\PlayerMove.cs" />
     <Compile Include="Assets\Scripts\RailShot.cs" />
+    <Compile Include="Assets\Scripts\StartGame.cs" />
     <Compile Include="Assets\Scripts\Systems\BeatDetection\BeatDetector.cs" />
+    <Compile Include="Assets\Scripts\Systems\Game\MoveAway.cs" />
     <Compile Include="Assets\Scripts\Systems\Modules\ModuleSystem.cs" />
+    <Compile Include="Assets\Scripts\Systems\Song\Song.cs" />
+    <Compile Include="Assets\Scripts\Systems\Song\SongEvents.cs" />
+    <Compile Include="Assets\Scripts\Systems\Song\SongListener.cs" />
+    <Compile Include="Assets\Scripts\Systems\Song\SongManager.cs" />
+    <Compile Include="Assets\Scripts\Systems\Tiles\Box.cs" />
     <Compile Include="Assets\Scripts\Systems\Tiles\Tile.cs" />
+    <Compile Include="Assets\Scripts\Systems\Tiles\TileBeat.cs" />
+    <Compile Include="Assets\Scripts\Systems\Tiles\TilePulse.cs" />
     <Compile Include="Assets\Scripts\Systems\Tiles\TileRoot.cs" />
     <Compile Include="Assets\Scripts\Systems\Tiles\TileType.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\Resources\Shaders\Colour.shader" />
+    <None Include="Assets\Resources\Shaders\Beat.shader" />
+    <None Include="Assets\Resources\Shaders\Pulse 1.shader" />
+    <None Include="Assets\Resources\Shaders\Pulse.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class TouchAttack : MonoBehaviour {
 
@@ -15,8 +14,9 @@ public class TouchAttack : MonoBehaviour {
 	
 	}
 
-    void OnTriggerEnter(Collider coll)
+    void OnCollisionEnter(Collision coll)
     {
+        Debug.Log("foooo");
         if (coll.gameObject.tag == "Player")
         {
             Health target = coll.gameObject.GetComponent<Health>();
@@ -26,7 +26,7 @@ public class TouchAttack : MonoBehaviour {
                 target.DisplayDamageFx();
                 target.ShakeCamera();
             }
-            Destroy(gameObject.transform.parent.gameObject);
+            Destroy(gameObject);
         }
     }
 }
