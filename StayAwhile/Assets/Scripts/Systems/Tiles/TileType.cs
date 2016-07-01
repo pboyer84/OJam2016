@@ -17,7 +17,7 @@ public abstract class TileFunc
 		} else if(tileType == TileType.Blue) {
 			return Color.blue;
 		} else if(tileType == TileType.Green) {
-			return Color.green;
+			return new Color (0.35f, 0.65f, 0.05f);
 		}  else if(tileType == TileType.Yellow) {
 			return Color.yellow;
 		}  else {

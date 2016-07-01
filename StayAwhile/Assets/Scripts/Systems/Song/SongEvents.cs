@@ -8,6 +8,10 @@ public class SongEvents
 
     private List<SongListener> list = new List<SongListener>();
 
+	public static void WipeSystem() {
+		get().list.Clear();
+	}
+
     private static SongEvents instance = null;
     private static SongEvents get()
     {
@@ -34,7 +38,7 @@ public class SongEvents
     {
         if (!get().list.Contains(item))
         {
-            get().list.Add(item);
+			get().list.Remove(item);
         }
     }
 

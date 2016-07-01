@@ -36,6 +36,10 @@ public class PlayerMove : MonoBehaviour, SongListener
         transform.Rotate(Vector3.up, xMouse * 15f);
         Vector3 movement = transform.forward * zMov + transform.right * xMov;
         myBody.SimpleMove(movement * WalkSpeed);
+
+		if (transform.position.y <= -10) {
+			GetComponent<Health> ().Value -= 1;
+		}
     }
 
     Tile lastTile = null;
@@ -57,8 +61,7 @@ public class PlayerMove : MonoBehaviour, SongListener
 
                 if (isTile.tileType != lastTile.tileType)
                 {
-                    Debug.Log("Player is leaving a song tile while its music is still playing. Kill the player for not staying awhile to listen.");
-
+                  
                     Health playerHealth = GetComponent<Health>();
                     playerHealth.Value -= 1000;
                 }

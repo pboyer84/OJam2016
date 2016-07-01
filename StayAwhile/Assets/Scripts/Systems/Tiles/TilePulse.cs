@@ -52,28 +52,6 @@ public class TilePulse : MonoBehaviour, AudioProcessor.AudioCallbacks, SongListe
 
     float beat = 0;
 
-    public void OnDrawGizmos()
-    {
-        try
-        {
-            if (gameObject)
-                if (GetComponent<Renderer>())
-                    if (GetComponent<Renderer>().sharedMaterial)
-                    {
-                        //pulse += 10;
-                  //      GetComponent<Renderer>().material.SetVector("_origin", gameObject.transform.position);
-                  //      GetComponent<Renderer>().material.SetColor("_color", TileFunc.toColor(tileType));
-                  //      GetComponent<Renderer>().material.SetFloat("_pulse", pulse);
-                    }
-        }
-        catch (UnityException e)
-        {
-
-        }
-
-
-    }
-
     public void onOnbeatDetected()
     {
 
@@ -124,7 +102,11 @@ public class TilePulse : MonoBehaviour, AudioProcessor.AudioCallbacks, SongListe
             rampTime -= Time.deltaTime * 2.0f;
         }
 
-        rampTime = Mathf.Clamp(rampTime, 0.0f, 1.0f);
+		if (tileType == TileType.Green) {
+			rampTime = Mathf.Clamp (rampTime, 0.0f, 0.25f);
+		} else {
+			rampTime = Mathf.Clamp (rampTime, 0.0f, 1.0f);
+		}
     }
 
     Boolean enabledSong = false;

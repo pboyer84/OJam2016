@@ -13,9 +13,8 @@ public class MoveAway : MonoBehaviour, AudioProcessor.AudioCallbacks, SongListen
 	{
 		if(eventType == SongEventType.OnSongStarted)
 		{
-
 			GetComponent<Renderer>().material.SetColor("_Color", TileFunc.toColor(songType));
-		}
+		}	
 	}
 
 

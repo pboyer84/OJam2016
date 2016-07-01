@@ -11,7 +11,7 @@ public class TileRoot : MonoBehaviour
     
     public void Start()
     {
-        generateEnemy();
+       // generateEnemy();
     }
 
 
@@ -46,25 +46,24 @@ public class TileRoot : MonoBehaviour
 
         int randomSpawn = Random.Range(0, tiles.Length);
 
-        //enemy.transform.transform.parent = gameObject.transform;
         enemy.transform.position = tiles[randomSpawn].transform.position;
-        // enemy.transform.position += new Vector3(0, 0.654f + randomEnemy == 1 ? 3.5f : 0.0f, 0.0f);
         enemy.transform.position += new Vector3(0, 2.2f, 0.0f);
         if (randomEnemy == 2)
         {
             enemy.transform.position += new Vector3(0, 3.5f, 0.0f);
         }
+
+		if (randomEnemy != 1 && randomEnemy != 2)
+		{
+			enemy.transform.position -= new Vector3(0, 1.5f, 0.0f);
+		}
     }
 
     void OnTriggerEnter(Collider col)
     {
-        //  Debug.Log("trigger");
-
         if(col.GetComponent<PlayerMove>())
         ModuleSystem.generateNext(depth);
-
-
-
+		
     }
 
 }

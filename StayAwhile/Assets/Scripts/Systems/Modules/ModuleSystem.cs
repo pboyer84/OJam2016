@@ -4,7 +4,6 @@ using System.Collections.Generic;
 
 public class ModuleSystem : MonoBehaviour {
 
-	private string filePath = "Assets/Resources/Prefabs/Modules";
 
     public GameObject sphere;
 

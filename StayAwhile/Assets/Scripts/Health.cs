@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 public class Health : MonoBehaviour {
 
@@ -103,6 +105,10 @@ public class Health : MonoBehaviour {
             yield return new WaitForSeconds(0.01f);
             transform.Rotate(fallRotation);
         }
+
+		yield return new WaitForSeconds (1.00f);
+		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
     }
 
 

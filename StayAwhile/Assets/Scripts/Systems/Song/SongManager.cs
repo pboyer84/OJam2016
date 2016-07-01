@@ -21,6 +21,8 @@ public class SongManager : MonoBehaviour {
     
     void Awake()
     {
+		SongEvents.WipeSystem ();
+
         redSong = new Song();
         redSong.audio = redAudioClip;
         redSong.beat = (BeatDetector)gameObject.AddComponent(typeof(BeatDetector));
@@ -35,6 +37,7 @@ public class SongManager : MonoBehaviour {
         greenSong.audio = greenAudioClip;
         greenSong.beat = (BeatDetector)gameObject.AddComponent(typeof(BeatDetector));
         greenSong.beat.BaseTimeInSecond = 1;
+
 
         yellowSong = new Song();
         yellowSong.audio = yellowAudioClip;
@@ -88,10 +91,12 @@ public class SongManager : MonoBehaviour {
             {
                 audio.clip = blueSong.audio;
             }
-            if (songColor == TileType.Green)
-            {
-                audio.clip = greenSong.audio;
-            }
+			if (songColor == TileType.Green) {
+				audio.clip = greenSong.audio;
+				audio.pitch = 0.75f;
+			} else {
+				audio.pitch = 1;
+			}
             if (songColor == TileType.Yellow)
             {
                 audio.clip = yellowSong.audio;
